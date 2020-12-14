@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="crudsExamenApp.employee.home.title">Employees</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-employee" [routerLink]="['/employee/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="crudsExamenApp.employee.home.createLabel">
+            Create a new Employee
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="employees?.length === 0">
+        <span jhiTranslate="crudsExamenApp.employee.home.notFound">No employees found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="employees && employees.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.lastName">Last Name</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.secondLastName">Second Last Name</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.gender">Gender</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.birthday">Birthday</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.entryDate">Entry Date</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.position">Position</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.salary">Salary</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.state">State</span></th>
+                    <th scope="col" ><span jhiTranslate="crudsExamenApp.employee.deparment">Deparment</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employees ;trackBy: trackId">
+                    <td><a [routerLink]="['/employee', employee.id, 'view']">{{ employee.id }}</a></td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.lastName }}</td>
+                    <td>{{ employee.secondLastName }}</td>
+                    <td>{{ employee.gender }}</td>
+                    <td>{{ employee.birthday | date:'medium' }}</td>
+                    <td>{{ employee.entryDate | date:'medium' }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.salary }}</td>
+                    <td jhiTranslate="{{ 'crudsExamenApp.Status.' + employee.state }}">{{ employee.state }}</td>
+                    <td>
+                        <div *ngIf="employee.deparment">
+                            <a [routerLink]="['/deparment', employee.deparment?.id, 'view']" >{{ employee.deparment?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/employee', employee.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/employee', employee.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(employee)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

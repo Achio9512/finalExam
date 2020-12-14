@@ -48,6 +48,11 @@ public class CacheConfiguration {
             createCache(cm, cr.ac.ucenfotec.cruds.domain.User.class.getName());
             createCache(cm, cr.ac.ucenfotec.cruds.domain.Authority.class.getName());
             createCache(cm, cr.ac.ucenfotec.cruds.domain.User.class.getName() + ".authorities");
+            createCache(cm, cr.ac.ucenfotec.cruds.domain.Employee.class.getName());
+            createCache(cm, cr.ac.ucenfotec.cruds.domain.Employee.class.getName() + ".leaders");
+            createCache(cm, cr.ac.ucenfotec.cruds.domain.Deparment.class.getName());
+            createCache(cm, cr.ac.ucenfotec.cruds.domain.Deparment.class.getName() + ".employees");
+            createCache(cm, cr.ac.ucenfotec.cruds.domain.Leadership.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

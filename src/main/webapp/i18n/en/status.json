@@ -1,0 +1,9 @@
+{
+  "crudsExamenApp": {
+    "Status": {
+      "null": "",
+      "Active": "Active",
+      "Inactive": "Inactive"
+    }
+  }
+}

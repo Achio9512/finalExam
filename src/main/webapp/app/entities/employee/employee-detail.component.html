@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employee">
+            <h2><span jhiTranslate="crudsExamenApp.employee.detail.title">Employee</span> {{ employee.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="crudsExamenApp.employee.name">Name</span></dt>
+                <dd>
+                    <span>{{ employee.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ employee.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.secondLastName">Second Last Name</span></dt>
+                <dd>
+                    <span>{{ employee.secondLastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.gender">Gender</span></dt>
+                <dd>
+                    <span>{{ employee.gender }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.birthday">Birthday</span></dt>
+                <dd>
+                    <span>{{ employee.birthday }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.entryDate">Entry Date</span></dt>
+                <dd>
+                    <span>{{ employee.entryDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.position">Position</span></dt>
+                <dd>
+                    <span>{{ employee.position }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.salary">Salary</span></dt>
+                <dd>
+                    <span>{{ employee.salary }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.state">State</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'crudsExamenApp.Status.' + employee.state }}">{{ employee.state }}</span>
+                </dd>
+                <dt><span jhiTranslate="crudsExamenApp.employee.deparment">Deparment</span></dt>
+                <dd>
+                    <div *ngIf="employee.deparment">
+                        <a [routerLink]="['/deparment', employee.deparment?.id, 'view']">{{ employee.deparment?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employee', employee.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
